@@ -3,8 +3,7 @@ module.exports = function () {
     let Schema = require('mongoose').Schema;
 
     let task = Schema({
-        title: String,
-        description: String,
+        title: String,       
         status: Boolean,
         user: String
     })

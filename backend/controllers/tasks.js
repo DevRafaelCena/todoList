@@ -6,7 +6,6 @@ let task = {
     create: async (req, res) => {
 
         const {
-            description,
             title,
             user
         } = req.body
@@ -18,14 +17,11 @@ let task = {
                 title: title
 
             }).then(async (result) => {
-                console.log(result)
-
-                if (!result) { //não encontrou a task com o mesmo title e user criar       
+                if (!result) { //não encontrou a task com o mesmo title e user       
 
 
                     let newTask = await tasks.create({
                         title: title,
-                        description: description,
                         status: true,
                         user: user
                     }).then((r) => {
@@ -43,13 +39,6 @@ let task = {
             console.log(err)
             return res.status(400).json(err)
         }
-
-
-
-
-
-
-
 
     },
 
@@ -88,8 +77,9 @@ let task = {
         } = req.body
 
         try {
-            let taskUpdate = tasks.findByIdAndUpdate({
-                _id: id,
+            let taskUpdate = tasks.updateOne({
+                _id: id
+            }, {
                 status: !status
             }).then(async (result) => {
                 let tasks = result

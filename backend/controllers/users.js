@@ -43,15 +43,18 @@ let userLogin = {
                     })
                 } else { //confere a senha digitada
 
-                    if (usuario.password != password) {
-                        return res.status(403).json({
+                    if (usuario.password === password) {
+                        return res.status(200).json({
+                            usuario
+                        })
+                      
+                    }else{
+                        return res.status(200).json({
                             msg: "Senha incorreta"
                         })
                     }
                 }
-                return res.status(200).json({
-                    usuario
-                })
+              
             });
         } catch (err) {
             return res.status(400).json(err)
